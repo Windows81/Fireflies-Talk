@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html style="background: transparent;">
+<head>
+  <meta charset="UTF-8">
+  <title>Meeting End Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      background: transparent !important;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Roboto, sans-serif;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -webkit-app-region: drag; /* Make window draggable */
+    }
+
+    /* Match exact React Native styles from compact view panel */
+    .animation-container {
+      padding: 12px 16px;
+      display: flex;
+
+      border-radius: 8px 8px 8px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.10));
+      background: rgba(0, 0, 0, 0.40);
+      /* Match elevation[3] + inset shadow from compact panel */
+      box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.16) inset, 0 4px 4px 0 rgba(0, 0, 0, 0.10);
+      backdrop-filter: blur(10px);
+
+
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+
+      animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 36px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .logo {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    /* Match ShimmerText component exactly */
+    .text {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: transparent;
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+
+      /* Shimmer effect matching React implementation */
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #ffffff 40%,
+        rgba(255, 255, 255, 0.5) 50%,
+        #ffffff 60%,
+        #ffffff 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3000ms linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% center;
+      }
+      100% {
+        background-position: -200% center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="animation-container">
+    <!-- Fireflies logo matching IconLogo component with gradients -->
+    <svg class="logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad-a" x1="19.299" x2="-13.867" y1="19.815" y2="-15.031" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E82A73"/>
+          <stop offset="0.113" stop-color="#DE2D7A"/>
+          <stop offset="0.3" stop-color="#C5388F"/>
+          <stop offset="0.54" stop-color="#9B4AB0"/>
+          <stop offset="0.818" stop-color="#6262DE"/>
+          <stop offset="0.994" stop-color="#3B73FF"/>
+        </linearGradient>
+        <linearGradient id="grad-b" x1="19.413" x2="-13.752" y1="19.707" y2="-15.139" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FF3C82"/>
+          <stop offset="0.103" stop-color="#F53E88"/>
+          <stop offset="0.274" stop-color="#DC4598"/>
+          <stop offset="0.492" stop-color="#B251B2"/>
+          <stop offset="0.745" stop-color="#7961D7"/>
+          <stop offset="0.994" stop-color="#3B73FF"/>
+        </linearGradient>
+        <linearGradient id="grad-c" x1="24.923" x2="13.685" y1="14.466" y2="-26.259" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E82A73"/>
+          <stop offset="0.113" stop-color="#DE2D7A"/>
+          <stop offset="0.3" stop-color="#C5388F"/>
+          <stop offset="0.54" stop-color="#9B4AB0"/>
+          <stop offset="0.818" stop-color="#6262DE"/>
+          <stop offset="0.994" stop-color="#3B73FF"/>
+        </linearGradient>
+        <linearGradient id="grad-d" x1="13.863" x2="-26.367" y1="24.989" y2="12.733" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E82A73"/>
+          <stop offset="0.113" stop-color="#DE2D7A"/>
+          <stop offset="0.3" stop-color="#C5388F"/>
+          <stop offset="0.54" stop-color="#9B4AB0"/>
+          <stop offset="0.818" stop-color="#6262DE"/>
+          <stop offset="0.994" stop-color="#3B73FF"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#grad-a)" d="M7.89 0H0v7.832h7.89V0Z"/>
+      <path fill="url(#grad-b)" d="M17.236 9.455h-7.89v7.832h7.89V9.455Z"/>
+      <path fill="url(#grad-c)" d="M17.236 0h-7.89v7.832H24v-1.12c0-1.78-.713-3.487-1.981-4.746A6.788 6.788 0 0 0 17.237 0h-.001Z"/>
+      <path fill="url(#grad-d)" d="M0 9.455v7.832c0 1.78.713 3.488 1.981 4.747A6.789 6.789 0 0 0 6.763 24H7.89V9.455H0Z"/>
+      <path fill="url(#grad-a)" d="m0 0 7.89 7.832H0V0Z" opacity="0.18"/>
+      <path fill="url(#grad-b)" d="m9.346 9.455 7.89 7.832h-7.89V9.455Z" opacity="0.18"/>
+      <path fill="url(#grad-d)" d="M0 17.287c0 1.78.713 3.488 1.981 4.747A6.789 6.789 0 0 0 6.763 24H7.89V9.455L0 17.287Z" opacity="0.18"/>
+      <path fill="url(#grad-c)" d="M17.237 0c1.793 0 3.513.707 4.782 1.966a6.688 6.688 0 0 1 1.98 4.747v1.119H9.347L17.236 0Z" opacity="0.18"/>
+    </svg>
+    <div class="text">Preparing your notes...</div>
+  </div>
+
+  <script>
+    console.log('[ANIMATION] Window loaded and visible');
+    var ANIMATION_DURATION = 3000; // 3 seconds
+
+    // Auto-close after 3 seconds
+    setTimeout(() => {
+      console.log('[ANIMATION] Closing animation window');
+      if (window.electron?.meetingEndAnimation) {
+        window.electron.meetingEndAnimation.hide();
+      }
+    }, ANIMATION_DURATION);
+  </script>
+</body>
+</html>

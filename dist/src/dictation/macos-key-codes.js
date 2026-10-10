@@ -1,0 +1,61 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.keyTokenFromMacVirtualKey = exports.macVirtualKeyForToken = void 0;
+const MAC_VK_BY_KEY = {
+    0: 0x1d,
+    1: 0x12,
+    2: 0x13,
+    3: 0x14,
+    4: 0x15,
+    5: 0x17,
+    6: 0x16,
+    7: 0x1a,
+    8: 0x1c,
+    9: 0x19,
+    A: 0x00,
+    B: 0x0b,
+    Backquote: 0x32,
+    C: 0x08,
+    D: 0x02,
+    E: 0x0e,
+    F: 0x03,
+    F1: 0x7a,
+    F10: 0x6d,
+    F11: 0x67,
+    F12: 0x6f,
+    F2: 0x78,
+    F3: 0x63,
+    F4: 0x76,
+    F5: 0x60,
+    F6: 0x61,
+    F7: 0x62,
+    F8: 0x64,
+    F9: 0x65,
+    G: 0x05,
+    H: 0x04,
+    I: 0x22,
+    J: 0x26,
+    K: 0x28,
+    L: 0x25,
+    M: 0x2e,
+    N: 0x2d,
+    O: 0x1f,
+    P: 0x23,
+    Q: 0x0c,
+    R: 0x0f,
+    S: 0x01,
+    Space: 0x31,
+    T: 0x11,
+    U: 0x20,
+    V: 0x09,
+    W: 0x0d,
+    X: 0x07,
+    Y: 0x10,
+    Z: 0x06,
+};
+const MAC_KEY_BY_VK = Object.fromEntries(Object.entries(MAC_VK_BY_KEY).map(([key, vk]) => [vk, key]));
+const macVirtualKeyForToken = (key) => MAC_VK_BY_KEY[key];
+exports.macVirtualKeyForToken = macVirtualKeyForToken;
+const keyTokenFromMacVirtualKey = (code) => MAC_KEY_BY_VK[code];
+exports.keyTokenFromMacVirtualKey = keyTokenFromMacVirtualKey;
+//# sourceMappingURL=macos-key-codes.js.map

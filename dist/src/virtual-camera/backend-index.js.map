@@ -1,0 +1,1 @@
+{"version":3,"file":"backend-index.js","sourceRoot":"","sources":["../../../src/virtual-camera/backend-index.ts"],"names":[],"mappings":";;AAWA,wCAIC;AAdD,mDAA+C;AAC/C,uDAAmD;AAEnD;;;;;;GAMG;AACH,SAAgB,cAAc;IAC5B,IAAI,OAAO,CAAC,QAAQ,KAAK,QAAQ;QAAE,OAAO,4BAAY,CAAC;IACvD,IAAI,OAAO,CAAC,QAAQ,KAAK,OAAO;QAAE,OAAO,gCAAc,CAAC;IACxD,OAAO,IAAI,CAAC;AACd,CAAC"}

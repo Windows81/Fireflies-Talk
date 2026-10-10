@@ -1,0 +1,1 @@
+{"version":3,"file":"recording-context-store.js","sourceRoot":"","sources":["../../src/recording-context-store.ts"],"names":[],"mappings":";;AAIA,kEAEC;AAED,kEAIC;AAVD,IAAI,wBAAwB,GAAoC,IAAI,CAAC;AAErE,SAAgB,2BAA2B;IACzC,OAAO,wBAAwB,CAAC;AAClC,CAAC;AAED,SAAgB,2BAA2B,CACzC,QAAyC;IAEzC,wBAAwB,GAAG,QAAQ,CAAC;AACtC,CAAC"}

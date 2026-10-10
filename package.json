@@ -1,0 +1,26 @@
+{
+  "name": "fireflies-desktop",
+  "productName": "Fireflies",
+  "version": "0.2.11",
+  "description": "The #1 AI Teammate For Your Meetings",
+  "main": "dist/main.js",
+  "author": "Fireflies.ai",
+  "private": true,
+  "dependencies": {
+    "@firefliesai/payments-ff.utils": "^0.13.3",
+    "@firefliesai/realtime-ff-streaming-client": "^2.0.0",
+    "@firefliesai/shared-libs.utils": "^2.7.0",
+    "@sentry/electron": "^7.10.0",
+    "dotenv": "^17.2.2",
+    "electron-cookies-alt": "2.0.0",
+    "electron-log": "5.4.3",
+    "electron-serve": "3.0.1",
+    "electron-updater": "6.8.3",
+    "marked": "^18.0.9",
+    "node-abi": "^4.24.0",
+    "pngjs": "^3.4.0"
+  },
+  "optionalDependencies": {
+    "dmg-license": "^1.0.11"
+  }
+}

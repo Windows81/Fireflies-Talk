@@ -1,0 +1,1 @@
+{"version":3,"file":"macos-panel-activation.js","sourceRoot":"","sources":["../../src/macos-panel-activation.ts"],"names":[],"mappings":";;AAUA,gEAGC;AAZD,6DAAuD;AAEvD;;;;;;GAMG;AACH,SAAgB,0BAA0B,CAAC,GAAkB;IAC3D,IAAI,OAAO,CAAC,QAAQ,KAAK,QAAQ,IAAI,GAAG,CAAC,WAAW,EAAE;QAAE,OAAO;IAC/D,IAAA,oCAAe,GAAE,EAAE,iBAAiB,CAAC,GAAG,CAAC,qBAAqB,EAAE,CAAC,CAAC;AACpE,CAAC"}

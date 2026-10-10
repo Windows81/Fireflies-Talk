@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root {
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --bg: rgba(26, 28, 34, 0.96);
+      --text: #f5f7fa;
+      --muted: rgba(245, 247, 250, 0.72);
+      --button-primary: #6938ef;
+      --button-hover: #5a2dd1;
+      --menu-bg: rgba(30, 33, 40, 0.98);
+      --menu-border: rgba(255, 255, 255, 0.14);
+      --progress: #6ce9a6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      background: transparent;
+      user-select: none;
+      overflow: hidden;
+      padding: 16px 17px 18px 15px;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    button { font-family: var(--font); cursor: pointer !important; border: none; }
+
+    .wrap { width: 406px; height: 136px; position: relative; }
+
+    .card {
+      width: 406px;
+      height: 136px;
+      border-radius: 12px;
+      background: var(--bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.25);
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      position: relative;
+      overflow: visible;
+      transform: translateZ(0);
+      animation: in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='19.299' y1='19.815' x2='-13.867' y2='-15.031' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23E82A73'/%3E%3Cstop offset='0.113' stop-color='%23DE2D7A'/%3E%3Cstop offset='0.3' stop-color='%23C5388F'/%3E%3Cstop offset='0.54' stop-color='%239B4AB0'/%3E%3Cstop offset='0.818' stop-color='%236262DE'/%3E%3Cstop offset='0.994' stop-color='%233B73FF'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='19.413' y1='19.707' x2='-13.752' y2='-15.139' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FF3C82'/%3E%3Cstop offset='0.103' stop-color='%23F53E88'/%3E%3Cstop offset='0.274' stop-color='%23DC4598'/%3E%3Cstop offset='0.492' stop-color='%23B251B2'/%3E%3Cstop offset='0.745' stop-color='%237961D7'/%3E%3Cstop offset='0.994' stop-color='%233B73FF'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' x1='24.923' y1='14.466' x2='13.685' y2='-26.259' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23E82A73'/%3E%3Cstop offset='0.113' stop-color='%23DE2D7A'/%3E%3Cstop offset='0.3' stop-color='%23C5388F'/%3E%3Cstop offset='0.54' stop-color='%239B4AB0'/%3E%3Cstop offset='0.818' stop-color='%236262DE'/%3E%3Cstop offset='0.994' stop-color='%233B73FF'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' x1='13.863' y1='24.989' x2='-26.367' y2='12.733' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23E82A73'/%3E%3Cstop offset='0.113' stop-color='%23DE2D7A'/%3E%3Cstop offset='0.3' stop-color='%23C5388F'/%3E%3Cstop offset='0.54' stop-color='%239B4AB0'/%3E%3Cstop offset='0.818' stop-color='%236262DE'/%3E%3Cstop offset='0.994' stop-color='%233B73FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23a)' d='M7.89 0H0v7.832h7.89V0Z'/%3E%3Cpath fill='url(%23b)' d='M17.236 9.455h-7.89v7.832h7.89V9.455Z'/%3E%3Cpath fill='url(%23c)' d='M17.236 0h-7.89v7.832H24v-1.12c0-1.78-.713-3.487-1.981-4.746A6.788 6.788 0 0 0 17.237 0h-.001Z'/%3E%3Cpath fill='url(%23d)' d='M0 9.455v7.832c0 1.78.713 3.488 1.981 4.747A6.789 6.789 0 0 0 6.763 24H7.89V9.455H0Z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: 24px 24px;
+      background-position: center;
+    }
+
+    .content { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+    .title { font-size: 15px; line-height: 20px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .time { font-size: 13px; line-height: 18px; color: var(--muted); }
+
+    .actions { margin-top: 4px; position: relative; display: flex; align-items: flex-start; }
+
+    .split {
+      width: fit-content;
+      max-width: 100%;
+      height: 36px;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      background: var(--button-primary);
+    }
+
+    .primary {
+      flex: 0 1 auto;
+      min-width: 0;
+      height: 100%;
+      background: transparent;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      padding: 0 12px;
+      transition: transform 0.15s ease;
+    }
+
+    #primaryText {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-toggle {
+      width: 42px;
+      height: 100%;
+      border-left: 1px solid rgba(255, 255, 255, 0.18);
+      background: transparent;
+      color: #fff;
+      transition: transform 0.15s ease;
+    }
+
+    .split:hover { background: var(--button-hover); }
+    .primary:hover, .menu-toggle:hover { transform: translateY(-1px); }
+    .primary:active, .menu-toggle:active { transform: translateY(0); }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      min-width: 220px;
+      padding: 4px;
+      border-radius: 10px;
+      background: var(--menu-bg);
+      border: 1px solid var(--menu-border);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.36);
+      backdrop-filter: blur(20px);
+      z-index: 20;
+    }
+
+    .hidden { display: none !important; }
+
+    .menu-item {
+      width: 100%;
+      background: transparent;
+      border-radius: 8px;
+      color: var(--text);
+      height: 36px;
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .menu-item:hover { background: rgba(255, 255, 255, 0.08); }
+
+    .btn-dismiss {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(80px);
+      -webkit-backdrop-filter: blur(80px);
+      border-radius: 24px;
+      background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px 8px;
+      cursor: pointer !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s ease, transform 0.15s ease;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .wrap:hover .btn-dismiss {
+      opacity: 1;
+      pointer-events: auto;
+      cursor: pointer !important;
+    }
+
+    .btn-dismiss.always-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .btn-dismiss-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      pointer-events: none;
+    }
+
+    .btn-dismiss svg {
+      width: 11.5px;
+      height: 11.5px;
+      color: rgba(255, 255, 255, 0.9);
+      pointer-events: none;
+    }
+
+    .btn-dismiss:hover { transform: scale(1.05); }
+    .btn-dismiss:active { transform: scale(0.95); }
+    body.platform-darwin .btn-dismiss { left: -14px; right: auto; }
+
+    .progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 4px;
+      overflow: hidden;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    .bar { width: 0; height: 100%; background: var(--progress); transition: width 100ms linear; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <button class="btn-dismiss" aria-label="Dismiss" onclick="closeNotification(event)">
+      <div class="btn-dismiss-icon">
+        <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+    </button>
+
+    <div class="card">
+      <div class="logo" aria-label="Fireflies logo"></div>
+      <div class="content">
+        <div class="title" id="title">Meeting is starting</div>
+        <div class="time" id="timeLabel"></div>
+
+        <div class="actions">
+          <div class="split" id="split">
+            <button class="primary" id="primaryBtn">
+              <span class="icon" id="primaryIcon"></span>
+              <span id="primaryText">Join Meeting</span>
+            </button>
+            <button class="menu-toggle" id="menuToggle" aria-label="More actions">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="menu hidden" id="menu">
+            <button class="menu-item" id="menuItem">
+              <span class="icon" id="menuIcon"></span>
+              <span id="menuText">Join and Invite Bot</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="progress"><div class="bar" id="bar"></div></div>
+    </div>
+  </div>
+
+  <script>
+    'use strict';
+
+    const _calParams = new URLSearchParams(window.location.search);
+    const _calTimeout = _calParams.has('timeout') ? parseInt(_calParams.get('timeout'), 10) : 15000;
+    const TOTAL = _calTimeout;
+    const PERSISTENT = TOTAL === 0;
+    const STEP = 100;
+    const ICONS = {
+      mic: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1C11.2044 1 10.4413 1.31607 9.87868 1.87868C9.31607 2.44129 9 3.20435 9 4V12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12V4C15 3.20435 14.6839 2.44129 14.1213 1.87868C13.5587 1.31607 12.7956 1 12 1Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 10V12C19 13.8565 18.2625 15.637 16.9497 16.9497C15.637 18.2625 13.8565 19 12 19C10.1435 19 8.36301 18.2625 7.05025 16.9497C5.7375 15.637 5 13.8565 5 12V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19V23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+      plus: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+      gmeet: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.25 7.08341V12.9167L3.33333 13.3334L5.41667 12.9167V7.08341L3.33333 6.66675L1.25 7.08341Z" fill="#1E88E5"/><path d="M15.4167 9.99992V15.8333C15.4167 16.5237 14.8571 17.0833 14.1667 17.0833H5.41667L5 14.9999L5.41667 12.9166H11.25V9.99992L13.3333 9.58325L15.4167 9.99992Z" fill="#4CAF50"/><path d="M15.4167 4.16675V10.0001H11.25V7.08341H5.41667L5 5.00008L5.41667 2.91675H14.1667C14.8571 2.91675 15.4167 3.47633 15.4167 4.16675Z" fill="#FBC02D"/><path d="M5.41667 12.9167V17.0834H2.5C1.80958 17.0834 1.25 16.5238 1.25 15.8334V12.9167H5.41667Z" fill="#1565C0"/><path d="M5.41667 2.91675V7.08341H1.25L5.41667 2.91675Z" fill="#E53935"/><path d="M15.8333 10.0001L15.4167 13.5209L11.25 10.0001L15.4167 6.47925L15.8333 10.0001Z" fill="#2E7D32"/><path d="M19.1667 4.21259V15.7876C19.1667 16.1376 18.7584 16.3334 18.4876 16.1126L15.4167 13.5209V6.47926L18.4876 3.88759C18.7584 3.66676 19.1667 3.86259 19.1667 4.21259Z" fill="#4CAF50"/></svg>`,
+      zoom: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.11084 5.55553C1.11084 3.10093 3.10069 1.11108 5.55528 1.11108H14.4442C16.8988 1.11108 18.8886 3.10093 18.8886 5.55553V14.4444C18.8886 16.899 16.8988 18.8889 14.4442 18.8889H5.55528C3.10069 18.8889 1.11084 16.899 1.11084 14.4444V5.55553Z" fill="#D9D9D9"/><path d="M1.11084 5.55553C1.11084 3.10093 3.10069 1.11108 5.55528 1.11108H14.4442C16.8988 1.11108 18.8886 3.10093 18.8886 5.55553V14.4444C18.8886 16.899 16.8988 18.8889 14.4442 18.8889H5.55528C3.10069 18.8889 1.11084 16.899 1.11084 14.4444V5.55553Z" fill="url(#paint0_linear_zoom)"/><path d="M6.41079 11.3544H4.20579C4.13037 11.3546 4.05661 11.3323 3.99391 11.2904C3.9312 11.2484 3.88238 11.1888 3.85365 11.1191C3.82467 11.0495 3.81705 10.9728 3.83177 10.8989C3.84649 10.8249 3.88288 10.757 3.93631 10.7038L5.4636 9.17651H4.36899C4.0682 9.17651 3.82449 8.93277 3.82449 8.63198H5.85791C6.01272 8.63198 6.15088 8.72424 6.21009 8.86716C6.23909 8.93678 6.24673 9.01346 6.23204 9.08744C6.21735 9.16142 6.181 9.22936 6.1276 9.28262L4.6001 10.8099H5.86626C6.16705 10.8099 6.41079 11.0537 6.41079 11.3544ZM16.1573 9.65293C16.1573 9.06752 15.681 8.59106 15.0956 8.59106C14.7824 8.59106 14.5006 8.72744 14.3061 8.9438C14.1114 8.72741 13.8296 8.59106 13.5166 8.59106C12.931 8.59106 12.4547 9.06734 12.4547 9.65293V11.3544C12.7555 11.3544 12.9992 11.1107 12.9992 10.8099V9.65293C12.9992 9.36762 13.2312 9.1356 13.5165 9.1356C13.8017 9.1356 14.0337 9.36762 14.0337 9.65293V10.8099C14.0337 11.1107 14.2774 11.3544 14.5782 11.3544V9.65293C14.5782 9.36762 14.8103 9.1356 15.0956 9.1356C15.3807 9.1356 15.6128 9.36762 15.6128 9.65293V10.8099C15.6128 11.1107 15.8566 11.3544 16.1573 11.3544V9.65293ZM12.1825 9.99321C12.1825 10.7676 11.5548 11.3954 10.7804 11.3954C10.006 11.3954 9.37826 10.7676 9.37826 9.99321C9.37826 9.21878 10.006 8.59106 10.7804 8.59106C11.5548 8.59106 12.1825 9.21882 12.1825 9.99321ZM11.638 9.99321C11.638 9.51961 11.254 9.13563 10.7804 9.13563C10.3068 9.13563 9.92279 9.51961 9.92279 9.99321C9.92279 10.4668 10.3068 10.8508 10.7804 10.8508C11.254 10.8508 11.638 10.4668 11.638 9.99321ZM9.16047 9.99321C9.16047 10.7676 8.53275 11.3954 7.75853 11.3954C6.9841 11.3954 6.35638 10.7676 6.35638 9.99321C6.35638 9.21878 6.98413 8.59106 7.75853 8.59106C8.53275 8.59106 9.16047 9.21882 9.16047 9.99321ZM8.61593 9.99321C8.61593 9.51961 8.23213 9.13563 7.75853 9.13563C7.28476 9.13563 6.90095 9.51961 6.90095 9.99321C6.90095 10.4668 7.28476 10.8508 7.75853 10.8508C8.23213 10.8508 8.61593 10.4668 8.61593 9.99321Z" fill="white"/><defs><linearGradient id="paint0_linear_zoom" x1="5.31819" y1="18.1087" x2="14.6814" y2="1.89114" gradientUnits="userSpaceOnUse"><stop stop-color="#0845BF"/><stop offset="0.6" stop-color="#0B5CFF"/><stop offset="1" stop-color="#4F90EE"/></linearGradient></defs></svg>`,
+      teams: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.3333 9.16659V12.4999C18.3333 13.8808 17.2141 14.9999 15.8333 14.9999C14.4524 14.9999 13.3333 13.8808 13.3333 12.4999V8.33325H17.4999C17.9603 8.33325 18.3333 8.70617 18.3333 9.16659ZM15.8333 6.66659C16.7537 6.66659 17.4999 5.92034 17.4999 4.99992C17.4999 4.0795 16.7537 3.33325 15.8333 3.33325C14.9128 3.33325 14.1666 4.0795 14.1666 4.99992C14.1666 5.92034 14.9128 6.66659 15.8333 6.66659Z" fill="#5059C9"/><path d="M14.5833 9.16659V13.7499C14.5833 16.1428 12.5663 18.0649 10.1392 17.9074C7.92458 17.7641 6.25 15.8262 6.25 13.607V8.33325H13.75C14.2104 8.33325 14.5833 8.70617 14.5833 9.16659ZM10.4167 7.08325C11.7975 7.08325 12.9167 5.96409 12.9167 4.58325C12.9167 3.20242 11.7975 2.08325 10.4167 2.08325C9.03583 2.08325 7.91667 3.20242 7.91667 4.58325C7.91667 5.96409 9.03583 7.08325 10.4167 7.08325Z" fill="#7B83EB"/><path d="M10.4167 7.08325C11.7975 7.08325 12.9167 5.96396 12.9167 4.58325C12.9167 3.20254 11.7975 2.08325 10.4167 2.08325C9.03604 2.08325 7.91675 3.20254 7.91675 4.58325C7.91675 5.96396 9.03604 7.08325 10.4167 7.08325Z" fill="#7B83EB"/><path opacity="0.05" d="M10.8333 13.8828V8.33325H6.25V13.607C6.25 14.2462 6.39292 14.8603 6.64333 15.4166H9.29917C10.1467 15.4166 10.8333 14.7299 10.8333 13.8828Z" fill="black"/><path opacity="0.07" d="M6.25 8.33325V13.607C6.25 14.0903 6.33375 14.5587 6.48083 14.9999H9.255C9.97333 14.9999 10.5554 14.4178 10.5554 13.6995V8.33325H6.25Z" fill="black"/><path opacity="0.09" d="M10.2779 8.33325H6.25V13.607C6.25 13.9412 6.29208 14.267 6.36417 14.5833H9.21083C9.8 14.5833 10.2775 14.1058 10.2775 13.5166V8.33325H10.2779Z" fill="black"/><path d="M9.16675 14.1666H2.50008C2.03966 14.1666 1.66675 13.7937 1.66675 13.3333V6.66659C1.66675 6.20617 2.03966 5.83325 2.50008 5.83325H9.16675C9.62716 5.83325 10.0001 6.20617 10.0001 6.66659V13.3333C10.0001 13.7937 9.62716 14.1666 9.16675 14.1666Z" fill="url(#paint0_linear_teams)"/><path d="M7.52843 7.91626H4.13843V8.63293H5.40801V12.0829H6.25884V8.63293H7.52843V7.91626Z" fill="white"/><defs><linearGradient id="paint0_linear_teams" x1="1.93675" y1="6.10325" x2="9.75133" y2="13.9178" gradientUnits="userSpaceOnUse"><stop stop-color="#5961C3"/><stop offset="1" stop-color="#3A41AC"/></linearGradient></defs></svg>`
+    };
+
+    let primaryUrl = '';
+    let menuUrl = '';
+    let dismissUrl = '';
+    let elapsed = 0;
+    let timer = null;
+
+    const primaryBtn = document.getElementById('primaryBtn');
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    const menuItem = document.getElementById('menuItem');
+
+    function setIcon(el, key, fallback) {
+      if (!el) return;
+      const name = key && ICONS[key] ? key : fallback;
+      if (!name || !ICONS[name]) {
+        el.classList.add('hidden');
+        el.innerHTML = '';
+        return;
+      }
+      el.innerHTML = ICONS[name];
+      el.classList.remove('hidden');
+    }
+
+    function pause() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function resume() {
+      if (PERSISTENT) return;
+      if (!timer && elapsed < TOTAL) {
+        start();
+      }
+    }
+
+    function start() {
+      if (PERSISTENT) return;
+      const bar = document.getElementById('bar');
+      timer = setInterval(function () {
+        elapsed += STEP;
+        const pct = (elapsed / TOTAL) * 100;
+        if (pct >= 100) {
+          clearInterval(timer);
+          timer = null;
+          bar.style.width = '100%';
+          setTimeout(function () { closeNotification(null, false); }, 100);
+          return;
+        }
+        bar.style.width = pct + '%';
+      }, STEP);
+    }
+
+    function playNotificationSound(soundUrl) {
+      if (!soundUrl) return;
+      const audio = new Audio(soundUrl);
+      audio.volume = 0.8;
+      audio.play().catch(function () {
+        // Some environments block autoplay; the notification should still render.
+      });
+    }
+
+    function act(url) {
+      pause();
+      elapsed = TOTAL;
+      if (url && window.electron && window.electron.notification) {
+        window.electron.notification.action(url);
+      } else {
+        closeNotification();
+      }
+    }
+
+    function closeMenu() { menu.classList.add('hidden'); }
+
+    function closeNotification(event, isUserDismiss) {
+      if (isUserDismiss === undefined) isUserDismiss = true;
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      pause();
+      elapsed = TOTAL;
+      const card = document.querySelector('.card');
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(-10px)';
+      setTimeout(function () {
+        if (window.electron && window.electron.notification) {
+          window.electron.notification.close(isUserDismiss ? dismissUrl : null);
+        }
+      }, 150);
+    }
+
+    (function init() {
+      const params = new URLSearchParams(window.location.search);
+      const meetingName = params.get('meetingName') || 'Meeting';
+      const timeLabel = params.get('timeLabel') || '';
+      const primaryText = params.get('primaryText') || 'Join Meeting';
+      const primaryIcon = params.get('primaryIcon') || '';
+      const menuText = params.get('menuText') || '';
+      const menuIcon = params.get('menuIcon') || '';
+      const soundUrl = params.get('soundUrl') || '';
+
+      primaryUrl = params.get('primaryUrl') || '';
+      menuUrl = params.get('menuUrl') || '';
+      dismissUrl = primaryUrl || menuUrl || '';
+
+      document.getElementById('title').textContent = '\u2018' + meetingName + '\u2019 is starting';
+      document.getElementById('timeLabel').textContent = timeLabel;
+      document.getElementById('primaryText').textContent = primaryText;
+      document.getElementById('menuText').textContent = menuText || 'Join and Invite Bot';
+
+      setIcon(document.getElementById('primaryIcon'), primaryIcon, 'mic');
+      setIcon(document.getElementById('menuIcon'), menuIcon || primaryIcon, 'plus');
+
+      if (!menuUrl) {
+        menuToggle.classList.add('hidden');
+      }
+
+      primaryBtn.addEventListener('click', function () { act(primaryUrl); });
+      menuToggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+        menu.classList.toggle('hidden');
+      });
+      menuItem.addEventListener('click', function () { act(menuUrl); });
+
+      [primaryBtn, menuToggle, menuItem].forEach(function (el) {
+        el.addEventListener('mouseenter', pause);
+        el.addEventListener('mouseleave', resume);
+      });
+
+      document.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeNotification();
+        if (event.key === 'Enter' && primaryUrl) act(primaryUrl);
+      });
+
+      document.addEventListener('mouseenter', function () {
+        if (window.electron && window.electron.notification) {
+          window.electron.notification.focus();
+        }
+      });
+
+      const platform = params.get('platform');
+      if (platform) {
+        document.body.classList.add('platform-' + platform);
+      }
+
+      if (PERSISTENT) {
+        const pc = document.querySelector('.progress');
+        if (pc) pc.style.display = 'none';
+      }
+
+      playNotificationSound(soundUrl);
+      if (PERSISTENT) {
+        const prog = document.querySelector('.progress');
+        if (prog) prog.style.display = 'none';
+        const dismiss = document.querySelector('.btn-dismiss');
+        if (dismiss) dismiss.classList.add('always-visible');
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>

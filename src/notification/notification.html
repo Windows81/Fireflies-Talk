@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <style>
+        /* Use system fonts only - faster loading, no font flashing */
+        :root {
+            --font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --bg-color: rgba(255, 255, 255, 0.95);
+            --text-primary: #000;
+            --text-secondary: #667085;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --button-primary: #6938ef;
+            --button-hover: #5a2dd1;
+            --close-bg: rgba(0, 0, 0, 0.1);
+            --close-hover: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: rgba(50, 50, 50, 1);
+                --text-primary: #fff;
+                --text-secondary: #a0a0a0;
+                --border-color: rgba(255, 255, 255, 0.1);
+                --close-bg: rgba(255, 255, 255, 0.1);
+                --close-hover: rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: var(--font-stack);
+            line-height: 1.5;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            background: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow: hidden;
+            /* Optimize rendering */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            /* Add padding to position notification content with space for close button and shadow */
+            padding: 16px 17px 18px 15px;
+        }
+
+        /* Force cursor on all buttons */
+        button {
+            cursor: pointer !important;
+        }
+
+        .notification-wrapper {
+            width: 406px;
+            position: relative;
+        }
+
+        .capture {
+            width: 406px;
+            position: relative;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 14px 12px 16px;
+            gap: 12px;
+            color: var(--text-primary);
+            /* Use GPU acceleration */
+            transform: translateZ(0);
+            will-change: transform, opacity;
+            /* Smooth entrance */
+            animation: slideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            /* macOS-style notification shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35),
+                        0 1px 3px rgba(0, 0, 0, 0.25);
+            /* Clip progress bar to border radius */
+            overflow: hidden;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) translateZ(0);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) translateZ(0);
+            }
+        }
+
+        .capture-top {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            /* Embedded SVG as background for better performance */
+            background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='19.299' y1='19.815' x2='-13.867' y2='-15.031' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23E82A73'/%3E%3Cstop offset='0.113' stop-color='%23DE2D7A'/%3E%3Cstop offset='0.3' stop-color='%23C5388F'/%3E%3Cstop offset='0.54' stop-color='%239B4AB0'/%3E%3Cstop offset='0.818' stop-color='%236262DE'/%3E%3Cstop offset='0.994' stop-color='%233B73FF'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='19.413' y1='19.707' x2='-13.752' y2='-15.139' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FF3C82'/%3E%3Cstop offset='0.103' stop-color='%23F53E88'/%3E%3Cstop offset='0.274' stop-color='%23DC4598'/%3E%3Cstop offset='0.492' stop-color='%23B251B2'/%3E%3Cstop offset='0.745' stop-color='%237961D7'/%3E%3Cstop offset='0.994' stop-color='%233B73FF'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' x1='24.923' y1='14.466' x2='13.685' y2='-26.259' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23E82A73'/%3E%3Cstop offset='0.113' stop-color='%23DE2D7A'/%3E%3Cstop offset='0.3' stop-color='%23C5388F'/%3E%3Cstop offset='0.54' stop-color='%239B4AB0'/%3E%3Cstop offset='0.818' stop-color='%236262DE'/%3E%3Cstop offset='0.994' stop-color='%233B73FF'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' x1='13.863' y1='24.989' x2='-26.367' y2='12.733' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23E82A73'/%3E%3Cstop offset='0.113' stop-color='%23DE2D7A'/%3E%3Cstop offset='0.3' stop-color='%23C5388F'/%3E%3Cstop offset='0.54' stop-color='%239B4AB0'/%3E%3Cstop offset='0.818' stop-color='%236262DE'/%3E%3Cstop offset='0.994' stop-color='%233B73FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23a)' d='M7.89 0H0v7.832h7.89V0Z'/%3E%3Cpath fill='url(%23b)' d='M17.236 9.455h-7.89v7.832h7.89V9.455Z'/%3E%3Cpath fill='url(%23c)' d='M17.236 0h-7.89v7.832H24v-1.12c0-1.78-.713-3.487-1.981-4.746A6.788 6.788 0 0 0 17.237 0h-.001Z'/%3E%3Cpath fill='url(%23d)' d='M0 9.455v7.832c0 1.78.713 3.488 1.981 4.747A6.789 6.789 0 0 0 6.763 24H7.89V9.455H0Z'/%3E%3C/svg%3E");
+            background-size: 24px 24px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0; /* Allow text truncation */
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            /* Text truncation */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .body {
+            font-size: 14px;
+            line-height: 19px;
+            color: var(--text-secondary);
+            /* Allow 2 lines with truncation */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 44px; /* logo width (32px) + gap (12px) */
+        }
+
+        .btn {
+            height: 32px;
+            padding: 0 12px;
+            border: none;
+            border-radius: 6px;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer !important;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+            /* Prevent text selection */
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .btn-primary {
+            background: var(--button-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--button-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-dismiss {
+            position: absolute;
+            top: -14px;
+            right: -14px; /* Default for win32 */
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(80px);
+            -webkit-backdrop-filter: blur(80px);
+            border-radius: 24px;
+            background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            cursor: pointer !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s ease, transform 0.15s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .notification-wrapper:hover .btn-dismiss,
+        .btn-dismiss.always-visible {
+            opacity: 1;
+            pointer-events: auto;
+            cursor: pointer !important;
+        }
+
+        .btn-dismiss-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            pointer-events: none;
+        }
+
+        .btn-dismiss svg {
+            width: 11.5px;
+            height: 11.5px;
+            color: rgba(255, 255, 255, 0.9);
+            pointer-events: none;
+        }
+
+        .btn-dismiss:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-dismiss:active {
+            transform: scale(0.95);
+        }
+
+        /* macOS: close button on left side */
+        body.platform-darwin .btn-dismiss {
+            right: auto;
+            left: -14px;
+        }
+
+        /* Progress bar at bottom */
+        .progress-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            overflow: hidden;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            z-index: 3;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: #6ce9a6;
+            transition: width 100ms linear;
+        }
+
+        /* Full-component green progress overlay — disabled
+        .progress-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            background: rgba(106, 233, 166, 0.07);
+            border-radius: 12px 0 0 12px;
+            pointer-events: none;
+            z-index: 1;
+            transition: width 100ms linear;
+        }
+
+        .progress-overlay.full-width {
+            border-radius: 12px;
+        }
+        */
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .capture {
+                animation: none;
+            }
+            .btn {
+                transition: none;
+            }
+            .progress-bar {
+                transition: none;
+            }
+            /* .progress-overlay {
+                transition: none;
+            } */
+        }
+    </style>
+</head>
+<body>
+    <div class="notification-wrapper">
+        <button class="btn-dismiss" aria-label="Dismiss" onclick="closeNotification(event)">
+            <div class="btn-dismiss-icon">
+                <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+                </svg>
+            </div>
+        </button>
+
+        <div class="capture">
+            <!-- <div class="progress-overlay" id="progressOverlay"></div> -->
+            <div class="capture-top">
+                <div class="logo" role="img" aria-label="Fireflies logo"></div>
+
+                <div class="content">
+                    <div class="title" id="title">Meeting is live</div>
+                    <div class="body" id="body">Get real-time notes and transcription.</div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" id="actionBtn" onclick="handleAction()">
+                    Action
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        'use strict';
+
+        let actionUrl = '';
+        let progressInterval = null;
+        const UPDATE_INTERVAL = 100; // Update every 100ms
+        let elapsedTime = 0;
+
+        // Read config from query params (defaults: showProgress=true, timeout=30s)
+        const _params = new URLSearchParams(window.location.search);
+        const SHOW_PROGRESS = _params.get('showProgress') !== 'false';
+        const SHOW_CLOSE_ALWAYS = _params.get('showCloseAlways') === 'true';
+        const TOTAL_DURATION = _params.has('timeout') ? parseInt(_params.get('timeout'), 10) : 30000;
+        const PERSISTENT = TOTAL_DURATION === 0;
+
+        // Initialize notification with URL parameters
+        (function init() {
+            const params = new URLSearchParams(window.location.search);
+
+            // Update text content
+            const title = params.get('title');
+            const body = params.get('body');
+            const actionText = params.get('actionText') || 'Action';
+            actionUrl = params.get('actionUrl') || '';
+
+            if (title) document.getElementById('title').textContent = title;
+            if (body) document.getElementById('body').textContent = body;
+
+            // Hide action button if no action URL or text
+            const actionBtn = document.getElementById('actionBtn');
+            const actionsDiv = document.querySelector('.actions');
+            if (!actionUrl || actionUrl.trim() === '') {
+                actionsDiv.style.display = 'none';
+            } else {
+                actionBtn.textContent = actionText;
+                // Pause progress on button hover
+                actionBtn.addEventListener('mouseenter', pauseProgress);
+                actionBtn.addEventListener('mouseleave', resumeProgress);
+            }
+
+            // Set platform class on body for CSS styling
+            const platform = params.get('platform');
+            if (platform) {
+                document.body.classList.add('platform-' + platform);
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeNotification();
+                if (e.key === 'Enter' && actionUrl) handleAction();
+            });
+
+            // Focus window on mouseenter to enable cursor styles
+            document.addEventListener('mouseenter', () => {
+                if (window.electron?.notification) {
+                    window.electron.notification.focus();
+                }
+            });
+
+            // Hide progress bar if persistent or explicitly disabled
+            if (PERSISTENT || !SHOW_PROGRESS) {
+                document.querySelector('.progress-container').style.display = 'none';
+            }
+
+            // Always show close button if configured
+            if (SHOW_CLOSE_ALWAYS) {
+                document.querySelector('.btn-dismiss').classList.add('always-visible');
+            }
+
+            // Start progress bar animation (skip if persistent)
+            if (!PERSISTENT) startProgress();
+
+            // Tell main process our actual content height so it can resize the window
+            requestAnimationFrame(() => {
+                const wrapper = document.querySelector('.notification-wrapper');
+                const actualHeight = Math.ceil(wrapper.getBoundingClientRect().height);
+                if (window.electron?.notification?.reportHeight) {
+                    window.electron.notification.reportHeight(actualHeight);
+                }
+            });
+        })();
+
+        function startProgress() {
+            const progressBar = document.getElementById('progressBar');
+            // const progressOverlay = document.getElementById('progressOverlay');
+
+            progressInterval = setInterval(() => {
+                elapsedTime += UPDATE_INTERVAL;
+                const progress = (elapsedTime / TOTAL_DURATION) * 100;
+
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    progressBar.style.width = '100%';
+                    // progressOverlay.style.width = '100%';
+                    // progressOverlay.classList.add('full-width');
+                    // Auto-close after reaching 100% (not a user dismiss)
+                    setTimeout(() => {
+                        closeNotification(null, false);
+                    }, 100);
+                } else {
+                    progressBar.style.width = progress + '%';
+                    // progressOverlay.style.width = progress + '%';
+                    // if (progress > 98) {
+                    //     progressOverlay.classList.add('full-width');
+                    // }
+                }
+            }, UPDATE_INTERVAL);
+        }
+
+        function pauseProgress() {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+        }
+
+        function resumeProgress() {
+            if (!progressInterval && elapsedTime < TOTAL_DURATION) {
+                startProgress();
+            }
+        }
+
+        function stopProgress() {
+            pauseProgress();
+            elapsedTime = TOTAL_DURATION;
+        }
+        
+        function handleAction() {
+            stopProgress();
+            if (actionUrl && window.electron?.notification) {
+                window.electron.notification.action(actionUrl);
+            } else {
+                closeNotification();
+            }
+        }
+
+        function closeNotification(event, isUserDismiss = true) {
+            //return;
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            stopProgress();
+
+            // Fade out animation
+            const capture = document.querySelector('.capture');
+            capture.style.opacity = '0';
+            capture.style.transform = 'translateY(-10px)';
+
+            setTimeout(() => {
+                if (window.electron?.notification) {
+                    // Pass actionUrl for dismiss tracking (only for user dismissals)
+                    window.electron.notification.close(isUserDismiss ? actionUrl : null);
+                }
+            }, 150);
+        }
+    </script>
+</body>
+</html>
