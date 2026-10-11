@@ -1,0 +1,77 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-a" x1="19.299" y1="19.815" x2="-13.867" y2="-15.031" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E82A73" />
+      <stop offset="0.113" stop-color="#DE2D7A" />
+      <stop offset="0.3" stop-color="#C5388F" />
+      <stop offset="0.54" stop-color="#9B4AB0" />
+      <stop offset="0.818" stop-color="#6262DE" />
+      <stop offset="0.994" stop-color="#3B73FF" />
+    </linearGradient>
+    <linearGradient id="gradient-b" x1="19.413" y1="19.707" x2="-13.752" y2="-15.139" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF3C82" />
+      <stop offset="0.103" stop-color="#F53E88" />
+      <stop offset="0.274" stop-color="#DC4598" />
+      <stop offset="0.492" stop-color="#B251B2" />
+      <stop offset="0.745" stop-color="#7961D7" />
+      <stop offset="0.994" stop-color="#3B73FF" />
+    </linearGradient>
+    <linearGradient id="gradient-c" x1="24.923" y1="14.466" x2="13.685" y2="-26.259" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E82A73" />
+      <stop offset="0.113" stop-color="#DE2D7A" />
+      <stop offset="0.3" stop-color="#C5388F" />
+      <stop offset="0.54" stop-color="#9B4AB0" />
+      <stop offset="0.818" stop-color="#6262DE" />
+      <stop offset="0.994" stop-color="#3B73FF" />
+    </linearGradient>
+    <linearGradient id="gradient-d" x1="13.863" y1="24.989" x2="-26.367" y2="12.733" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E82A73" />
+      <stop offset="0.113" stop-color="#DE2D7A" />
+      <stop offset="0.3" stop-color="#C5388F" />
+      <stop offset="0.54" stop-color="#9B4AB0" />
+      <stop offset="0.818" stop-color="#6262DE" />
+      <stop offset="0.994" stop-color="#3B73FF" />
+    </linearGradient>
+    <linearGradient id="gradient-e" x1="-3.858" y1="-9.782" x2="7.41" y2="16.038" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E82A73" />
+      <stop offset="0.114" stop-color="#DE286E" />
+      <stop offset="0.303" stop-color="#C52361" />
+      <stop offset="0.544" stop-color="#9B1A4D" />
+      <stop offset="0.825" stop-color="#620F30" />
+      <stop offset="0.994" stop-color="#3D081E" />
+    </linearGradient>
+    <linearGradient id="gradient-f" x1="5.488" y1="-0.327" x2="16.756" y2="25.494" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E82A73" />
+      <stop offset="0.114" stop-color="#DE286E" />
+      <stop offset="0.303" stop-color="#C52361" />
+      <stop offset="0.544" stop-color="#9B1A4D" />
+      <stop offset="0.825" stop-color="#620F30" />
+      <stop offset="0.994" stop-color="#3D081E" />
+    </linearGradient>
+    <linearGradient id="gradient-g" x1="-2.619" y1="-0.741" x2="22.901" y2="16.213" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E82A73" />
+      <stop offset="0.114" stop-color="#DE286E" />
+      <stop offset="0.303" stop-color="#C52361" />
+      <stop offset="0.544" stop-color="#9B1A4D" />
+      <stop offset="0.825" stop-color="#620F30" />
+      <stop offset="0.994" stop-color="#3D081E" />
+    </linearGradient>
+    <linearGradient id="gradient-h" x1="-558.666" y1="551.006" x2="-554.293" y2="585.533" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E82A73" />
+      <stop offset="0.114" stop-color="#DE286E" />
+      <stop offset="0.303" stop-color="#C52361" />
+      <stop offset="0.544" stop-color="#9B1A4D" />
+      <stop offset="0.825" stop-color="#620F30" />
+      <stop offset="0.994" stop-color="#3D081E" />
+    </linearGradient>
+  </defs>
+  
+  <path fill="url(#gradient-a)" d="M7.89 0H0v7.832h7.89V0Z" />
+  <path fill="url(#gradient-b)" d="M17.236 9.455h-7.89v7.832h7.89V9.455Z" />
+  <path fill="url(#gradient-c)" d="M17.236 0h-7.89v7.832H24v-1.12c0-1.78-.713-3.487-1.981-4.746A6.788 6.788 0 0 0 17.237 0h-.001Z" />
+  <path fill="url(#gradient-d)" d="M0 9.455v7.832c0 1.78.713 3.488 1.981 4.747A6.789 6.789 0 0 0 6.763 24H7.89V9.455H0Z" />
+  <path fill="url(#gradient-e)" d="m0 0 7.89 7.832H0V0Z" opacity="0.18" />
+  <path fill="url(#gradient-f)" d="m9.346 9.455 7.89 7.832h-7.89V9.455Z" opacity="0.18" />
+  <path fill="url(#gradient-g)" d="M0 17.287c0 1.78.713 3.488 1.981 4.747A6.789 6.789 0 0 0 6.763 24H7.89V9.455L0 17.287Z" opacity="0.18" />
+  <path fill="url(#gradient-h)" d="M17.237 0c1.793 0 3.513.707 4.782 1.966a6.688 6.688 0 0 1 1.98 4.747v1.119H9.347L17.236 0Z" opacity="0.18" />
+</svg>

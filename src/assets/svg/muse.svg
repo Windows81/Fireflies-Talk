@@ -1,0 +1,10 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="museGrad" x1="4" y1="19" x2="20" y2="5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7B5CFF"/>
+      <stop offset="1" stop-color="#25C8E8"/>
+    </linearGradient>
+  </defs>
+  <rect width="24" height="24" rx="5.4" fill="url(#museGrad)"/>
+  <path d="M5.6 17.4V6.6h2.7L12 12.1l3.7-5.5h2.7v10.8h-2.6v-6.3L12.6 16h-1.2L8.2 11.1v6.3z" fill="#fff"/>
+</svg>

@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Inter:wght@400;500;700&display=swap");
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Hide scrollbars inside the fullscreen recording's notes column (my notes, AI
+   notes, meeting prep). Needed because the global ::-webkit-scrollbar rule above
+   disables scrollbar-width support document-wide, so RN's
+   showsVerticalScrollIndicator has no effect. Descendant selector so it catches
+   whichever inner element actually scrolls. */
+#rtp-notes-content ::-webkit-scrollbar {
+  display: none;
+}
+
+/* Same treatment for the fullscreen recording's right side panel (AskFred /
+   Transcript): hide the scrollbar on whichever inner element scrolls. */
+#rtp-side-content ::-webkit-scrollbar {
+  display: none;
+}
+
+/* Same treatment for the desktop home meeting prep panel. */
+#desktop-meeting-prep-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thin, subtle scrollbar for notepad dropdown lists (matches Figma). */
+.notepad-thin-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.notepad-thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.notepad-thin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+.notepad-thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+button {
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+.notepad-summary-editor .ProseMirror {
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -0.18px;
+  color: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+/* The default browser selection is nearly invisible over the dim summary text;
+   drive it from theme tokens (set on the container) so it reads clearly. */
+.notepad-summary-editor .ProseMirror ::selection {
+  background-color: var(--summary-selection-bg);
+  color: var(--summary-selection-fg);
+}
+.notepad-summary-editor .ProseMirror ::-moz-selection {
+  background-color: var(--summary-selection-bg);
+  color: var(--summary-selection-fg);
+}
+.notepad-summary-editor .ProseMirror p {
+  margin: 0 0 12px 0;
+}
+.notepad-summary-editor .ProseMirror p:last-child {
+  margin-bottom: 0;
+}
+.notepad-summary-editor .ProseMirror ul,
+.notepad-summary-editor .ProseMirror ol {
+  margin: 0 0 12px 0;
+  padding-left: 22px;
+}
+.notepad-summary-editor .ProseMirror li {
+  margin-bottom: 8px;
+}
+.notepad-summary-editor .ProseMirror li p {
+  margin: 0;
+}
+.notepad-summary-editor .ProseMirror h1,
+.notepad-summary-editor .ProseMirror h2,
+.notepad-summary-editor .ProseMirror h3,
+.notepad-summary-editor .ProseMirror h4,
+.notepad-summary-editor .ProseMirror h5,
+.notepad-summary-editor .ProseMirror h6 {
+  /* Headings render as plain bold body text — no larger heading typography. */
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -0.18px;
+  margin: 0 0 12px 0;
+}
+.notepad-summary-editor .ProseMirror a {
+  color: inherit;
+  text-decoration: underline;
+}
+/* Timestamp spans are view-only decorations (see timestampDecoration.ts); paint
+   them purple and clickable so they match the read-only summary's link style. */
+.notepad-summary-editor .ProseMirror .notepad-timestamp {
+  color: var(--summary-timestamp-color);
+  cursor: pointer;
+}
+/* Manual-note spans are view-only decorations (see manualNoteDecoration.ts):
+   dotted-underline the merged line and hide the "(manual note)" marker to match
+   the read-only <mn> styling. */
+.notepad-summary-editor .ProseMirror .notepad-manual-note {
+  text-decoration: underline dotted;
+  text-decoration-color: var(--summary-manual-note-color);
+  text-underline-offset: 2px;
+}
+.notepad-summary-editor .ProseMirror .notepad-manual-note-marker {
+  display: none;
+}
+
+/* Remove focus ring from invite teammates email input */
+#invite-teammates-email-input,
+#invite-teammates-email-input:focus,
+#invite-teammates-email-input input,
+#invite-teammates-email-input input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* The notepad meeting title is edited inline — it must read as plain text with
+   no input chrome (border, box-shadow, or focus ring). */
+#notepad-title-input,
+#notepad-title-input:focus,
+#notepad-title-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Notepad pane scroll views must not shift horizontally when an inline
+   editor (e.g. Add Task) receives focus. */
+#notepad-pane-scroll {
+  overflow-x: hidden !important;
+  scrollbar-gutter: stable;
+}

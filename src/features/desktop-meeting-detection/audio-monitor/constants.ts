@@ -1,0 +1,1 @@
+export const MIC_START_CONFIRMATION_MS = 15_000;

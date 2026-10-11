@@ -3,7 +3,7 @@
   "productName": "Fireflies",
   "version": "0.2.11",
   "description": "The #1 AI Teammate For Your Meetings",
-  "main": "dist/main.js",
+  "main": "main.js",
   "author": "Fireflies.ai",
   "private": true,
   "dependencies": {

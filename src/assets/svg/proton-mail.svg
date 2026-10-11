@@ -1,0 +1,9 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pmGrad" x1="4" y1="18" x2="20" y2="6" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6D4AFF"/>
+      <stop offset="1" stop-color="#C9A6FF"/>
+    </linearGradient>
+  </defs>
+  <path d="M2.6 5.6a1.4 1.4 0 0 1 2.24-1.12L12 9.9l7.16-5.42A1.4 1.4 0 0 1 21.4 5.6v12.2a1.6 1.6 0 0 1-1.6 1.6h-3V11.1L12 14.8 7.2 11.1v8.3h-3a1.6 1.6 0 0 1-1.6-1.6V5.6z" fill="url(#pmGrad)"/>
+</svg>

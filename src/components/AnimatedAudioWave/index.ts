@@ -1,0 +1,1 @@
+export { AnimatedAudioWave } from "./AnimatedAudioWave";
