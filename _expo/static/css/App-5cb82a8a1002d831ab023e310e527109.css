@@ -1,0 +1,127 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: 0 0;
+}
+::-webkit-scrollbar-thumb {
+  background: #fff3;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff4d;
+}
+#rtp-notes-content ::-webkit-scrollbar {
+  display: none;
+}
+#rtp-side-content ::-webkit-scrollbar {
+  display: none;
+}
+#desktop-meeting-prep-scroll::-webkit-scrollbar {
+  display: none;
+}
+.notepad-thin-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.notepad-thin-scrollbar::-webkit-scrollbar-track {
+  background: 0 0;
+}
+.notepad-thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #ffffff0f;
+  border-radius: 8px;
+}
+.notepad-thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ffffff1f;
+}
+button {
+  cursor: pointer;
+}
+button[disabled] {
+  cursor: not-allowed;
+}
+.notepad-summary-editor .ProseMirror {
+  letter-spacing: -0.18px;
+  color: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+  outline: none;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+}
+.notepad-summary-editor .ProseMirror ::selection {
+  background-color: var(--summary-selection-bg);
+  color: var(--summary-selection-fg);
+}
+.notepad-summary-editor .ProseMirror ::selection {
+  background-color: var(--summary-selection-bg);
+  color: var(--summary-selection-fg);
+}
+.notepad-summary-editor .ProseMirror p {
+  margin: 0 0 12px;
+}
+.notepad-summary-editor .ProseMirror p:last-child {
+  margin-bottom: 0;
+}
+.notepad-summary-editor .ProseMirror ul,
+.notepad-summary-editor .ProseMirror ol {
+  margin: 0 0 12px;
+  padding-left: 22px;
+}
+.notepad-summary-editor .ProseMirror li {
+  margin-bottom: 8px;
+}
+.notepad-summary-editor .ProseMirror li p {
+  margin: 0;
+}
+.notepad-summary-editor .ProseMirror h1,
+.notepad-summary-editor .ProseMirror h2,
+.notepad-summary-editor .ProseMirror h3,
+.notepad-summary-editor .ProseMirror h4,
+.notepad-summary-editor .ProseMirror h5,
+.notepad-summary-editor .ProseMirror h6 {
+  letter-spacing: -0.18px;
+  margin: 0 0 12px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+}
+.notepad-summary-editor .ProseMirror a {
+  color: inherit;
+  text-decoration: underline;
+}
+.notepad-summary-editor .ProseMirror .notepad-timestamp {
+  color: var(--summary-timestamp-color);
+  cursor: pointer;
+}
+.notepad-summary-editor .ProseMirror .notepad-manual-note {
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  -webkit-text-decoration-color: var(--summary-manual-note-color);
+  text-decoration-color: var(--summary-manual-note-color);
+  text-underline-offset: 2px;
+}
+.notepad-summary-editor .ProseMirror .notepad-manual-note-marker {
+  display: none;
+}
+#invite-teammates-email-input,
+#invite-teammates-email-input:focus,
+#invite-teammates-email-input input,
+#invite-teammates-email-input input:focus,
+#notepad-title-input,
+#notepad-title-input:focus,
+#notepad-title-input:focus-visible {
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+#notepad-pane-scroll {
+  scrollbar-gutter: stable;
+  overflow-x: hidden !important;
+}
